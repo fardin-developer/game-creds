@@ -72,22 +72,12 @@ export default function Navbar({ onMenuToggle, onNavigate, walletBalance }: Navb
             >
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        {/* <button
-                            onClick={onMenuToggle}
-                            className="w-9 h-9 rounded-xl bg-gray-50 border border-gray-100 flex flex-col justify-center items-center gap-1.5 hover:bg-gray-100 transition-colors shadow-sm"
-                            aria-label="Open menu"
-                        >
-                            <div className="w-4 h-0.5 bg-gray-600 rounded-full"></div>
-                            <div className="w-4 h-0.5 bg-gray-600 rounded-full"></div>
-                            <div className="w-4 h-0.5 bg-gray-600 rounded-full"></div>
-                        </button> */}
-
-                        <div className="flex-shrink-0 ml-1 bg-white p-1 rounded-xl shadow-sm border border-gray-100">
+                        <div className="flex-shrink-0 ml-1">
                             <Image
                                 src="/logo9.png"
                                 alt="Logo"
-                                width={100}
-                                height={100}
+                                width={150}
+                                height={150}
                                 className="object-contain"
                                 priority
                             />
