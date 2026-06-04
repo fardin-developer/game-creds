@@ -3,9 +3,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { FaPlus, FaWhatsapp } from 'react-icons/fa';
-import { GiShoppingBag } from 'react-icons/gi';
-import { MdBarChart } from 'react-icons/md';
+import { LuPlus, LuAward, LuCreditCard, LuChartBar } from 'react-icons/lu';
+import { FaWhatsapp, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { useAppSelector, useAppDispatch } from '@/lib/hooks/redux';
 import { initializeAuth } from '@/lib/store/authSlice';
 import apiClient from '@/lib/api/axios';
@@ -92,24 +91,24 @@ export default function DashboardPage({ onNavigate }: DashboardPageProps = {}) {
           <div className="bg-white rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-gray-100 p-4">
             <div className="flex justify-between items-center px-1">
               <ActionIconButton
-                icon={<FaPlus />}
-                label="Add coins"
+                icon={<LuPlus />}
+                label="Add Money"
                 onClick={() => onNavigate ? onNavigate('addcoin') : router.push('/addcoin')}
               />
               <ActionIconButton
-                icon={<GiShoppingBag />}
-                label="Orders"
-                onClick={() => onNavigate ? onNavigate('orders') : router.push('/orders')}
+                icon={<LuCreditCard />}
+                label="Payments"
+                onClick={() => onNavigate ? onNavigate('payments') : router.push('/payments')}
               />
               <ActionIconButton
-                icon={<MdBarChart />}
+                icon={<LuChartBar />}
                 label="Leaderboard"
                 onClick={() => onNavigate ? onNavigate('leaderboard') : router.push('/leaderboard')}
               />
               <ActionIconButton
-                icon={<FaWhatsapp />}
-                label="Whatsapp"
-                onClick={() => window.open('https://wa.me/9707315156', '_blank')}
+                icon={<LuAward />}
+                label="Reward Points"
+                onClick={() => onNavigate ? onNavigate('rewards') : router.push('/rewards')}
               />
             </div>
           </div>
@@ -154,6 +153,59 @@ export default function DashboardPage({ onNavigate }: DashboardPageProps = {}) {
           )}
         </div>
       </div>
+
+      {/* Footer Section */}
+      <div className="w-11/12 mx-auto bg-white pt-8 pb-8 px-6 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.05)] border border-gray-100 mt-2 mb-8 relative overflow-hidden">
+        {/* Subtle Theme Accent at Top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] opacity-80"></div>
+
+        <div className="max-w-md mx-auto flex flex-col items-center relative z-10">
+          
+          <div className="mb-6 flex flex-col items-center">
+             <h2 className="text-gray-800 text-xl font-black tracking-wider uppercase drop-shadow-sm">Zoro Topup</h2>
+             <div className="w-10 h-1 bg-[var(--color-primary)] rounded-full mt-2 opacity-80"></div>
+          </div>
+
+          {/* Policy Links */}
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 mb-6 w-full">
+            <button onClick={() => router.push('/refund-policy')} className="text-gray-500 text-[11px] font-bold hover:text-[var(--color-primary)] transition-colors">
+              Refund Policy
+            </button>
+            <button onClick={() => router.push('/terms')} className="text-gray-500 text-[11px] font-bold hover:text-[var(--color-primary)] transition-colors">
+              Terms & Conditions
+            </button>
+            <button onClick={() => router.push('/privacy')} className="text-gray-500 text-[11px] font-bold hover:text-[var(--color-primary)] transition-colors">
+              Privacy Policy
+            </button>
+            <button onClick={() => router.push('/reward-policy')} className="text-gray-500 text-[11px] font-bold hover:text-[var(--color-primary)] transition-colors">
+              Reward Policy
+            </button>
+          </div>
+
+          <div className="w-full h-px bg-gray-100 mb-6" />
+
+          {/* Social Links */}
+          <h4 className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-4">Connect With Us</h4>
+          <div className="flex gap-4 mb-6">
+            <a href="https://wa.me/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#25D366] hover:text-white hover:border-transparent hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(37,211,102,0.3)] transition-all duration-300">
+              <FaWhatsapp className="text-lg" />
+            </a>
+            <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(225,48,108,0.3)] transition-all duration-300">
+              <FaInstagram className="text-lg" />
+            </a>
+            <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#1877F2] hover:text-white hover:border-transparent hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(24,119,242,0.3)] transition-all duration-300">
+              <FaFacebook className="text-lg" />
+            </a>
+            <a href="https://youtube.com/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-[#FF0000] hover:text-white hover:border-transparent hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(255,0,0,0.3)] transition-all duration-300">
+              <FaYoutube className="text-lg" />
+            </a>
+          </div>
+
+          <p className="text-gray-400 text-[10px] text-center font-medium tracking-wide">
+            © {new Date().getFullYear()} Zoro Topup. All rights reserved.
+          </p>
+        </div>
+      </div>
       <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onNavigate={onNavigate} />
     </div>
   );
@@ -164,10 +216,10 @@ export default function DashboardPage({ onNavigate }: DashboardPageProps = {}) {
 function ActionIconButton({ icon, label, onClick }: { icon: any, label: string, onClick: () => void }) {
   return (
     <div className="flex flex-col items-center cursor-pointer group" onClick={onClick}>
-      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gray-50 text-[var(--color-primary)] text-xl border border-gray-100 group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:-translate-y-1 group-active:translate-y-0 transition-all duration-200 ease-out">
+      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-gray-50 text-[var(--color-primary)] text-lg border border-gray-100 group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:-translate-y-1 group-active:translate-y-0 transition-all duration-200 ease-out">
         <span className="flex items-center justify-center">{icon}</span>
       </div>
-      <span className="text-gray-400 text-[11px] mt-1 font-medium tracking-wide group-hover:text-[var(--color-primary)] transition-colors duration-200">{label}</span>
+      <span className="text-gray-500 text-[11px] mt-1.5 font-bold tracking-wide group-hover:text-[var(--color-primary)] transition-colors duration-200">{label}</span>
     </div>
   );
 }

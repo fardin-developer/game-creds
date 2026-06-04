@@ -8,6 +8,7 @@ import { updateUser } from '@/lib/store/authSlice';
 import apiClient from '@/lib/api/axios';
 import TopSection from './TopSection';
 import { toast } from 'react-hot-toast';
+import { FaWhatsapp, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 interface TopUpPageProps {
   onNavigate?: (screen: string) => void;
@@ -698,7 +699,49 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
           <TopSection showLogo={true} onNavigate={onNavigate} />
         </div>
 
-        {/* Game Information & Input Card */}
+        {/* Top Wallet Banner */}
+        <div className="px-4 md:px-6 lg:px-8 mb-4 mt-2 relative z-10">
+          <div className="bg-gradient-to-r from-[#E7121B] to-[#C21011] rounded-[16px] p-4 py-3.5 flex justify-between items-center text-white shadow-sm overflow-hidden relative">
+            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-cover"></div>
+            <span className="font-semibold text-sm relative z-10 tracking-wide">G Coin Wallet</span>
+            <span className="font-bold text-base relative z-10">₹ {walletBalance.toFixed(2)}</span>
+          </div>
+        </div>
+
+        {/* Game Info Card (White) */}
+        <div className="px-4 md:px-6 lg:px-8 mb-4 relative z-10">
+          <div className="bg-white rounded-[16px] p-3 flex items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-50">
+            <Image
+              src={gameData.image}
+              alt={gameData.name}
+              width={46}
+              height={46}
+              className="rounded-xl border border-gray-100 mr-3.5 object-cover"
+              style={{ width: '46px', height: '46px' }}
+            />
+            <span className="text-[#010102] font-semibold text-[15px]">{gameData.name}</span>
+          </div>
+        </div>
+
+        {/* Social Media Connections Row (Grey Section) */}
+        <div className="px-4 md:px-6 lg:px-8 mb-6 relative z-10">
+          <div className="bg-[#F8F9FA] rounded-[16px] py-4 px-6 flex justify-between items-center border border-gray-100/60 shadow-[inset_0_2px_8px_rgba(0,0,0,0.01)]">
+            <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaFacebook className="text-[#1877F2] text-[26px] drop-shadow-sm" />
+            </a>
+            <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaInstagram className="text-[#E1306C] text-[26px] drop-shadow-sm" />
+            </a>
+            <a href="https://youtube.com/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaYoutube className="text-[#FF0000] text-[26px] drop-shadow-sm" />
+            </a>
+            <a href="https://wa.me/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaWhatsapp className="text-[#25D366] text-[26px] drop-shadow-sm" />
+            </a>
+          </div>
+        </div>
+
+        {/* Validation Input Card */}
         <div className="px-4 md:px-6 lg:px-8 mb-6">
           <div
             className="p-6 relative overflow-hidden"
@@ -741,29 +784,6 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
               }}
             />
             <div className="relative z-10">
-              {/* Game Logo and Info */}
-              <div className="flex items-center mb-6">
-                <div className="relative mr-4">
-                  <Image
-                    src={gameData.image}
-                    alt={gameData.name}
-                    width={60}
-                    height={60}
-                    className="object-cover rounded-lg"
-                    style={{
-                      width: '60px',
-                      height: '60px',
-                      border: '1px solid white',
-                      borderRadius: '22px',
-                      color: 'transparent'
-                    }}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-base sm:text-lg">{gameData.name}</h3>
-                  <p className="text-gray-100 text-xs sm:text-sm">{gameData.publisher}</p>
-                </div>
-              </div>
 
               {/* Input Fields - Dynamic based on validationFields */}
               <div className="space-y-3" id="validation-section">
@@ -901,6 +921,18 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
                     );
                   });
                 })()}
+
+                {/* Manual Validate Button */}
+                <button
+                  type="button"
+                  onClick={handleValidate}
+                  disabled={isValidating}
+                  className={`w-full py-2.5 mt-2 rounded-xl text-white font-semibold transition-all ${
+                    isValidating ? 'bg-white/30 cursor-not-allowed' : 'bg-white/20 hover:bg-white/30 active:scale-95'
+                  } border border-white/30`}
+                >
+                  {isValidating ? 'Validating...' : 'Validate Account'}
+                </button>
 
                 {/* Validated player name card */}
                 {validatedInfo && (
