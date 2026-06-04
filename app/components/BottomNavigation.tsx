@@ -86,9 +86,9 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
         }
       `}</style>
       
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between gap-3 w-[92vw] max-w-[400px]">
         {/* Outer futuristic container */}
-        <nav className="backdrop-blur-md bg-white/30 rounded-[32px] p-1.5 flex items-center w-[92vw] max-w-[400px] relative shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/60">
+        <nav className="backdrop-blur-md bg-white/30 rounded-[32px] p-1.5 flex items-center flex-1 relative shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/60 h-[60px]">
           
           {/* Subtle glowing edges */}
           <div className="absolute left-0 top-0 bottom-0 w-8 bg-linear-to-r from-white/60 to-transparent pointer-events-none z-10 rounded-l-[32px]" />
@@ -98,7 +98,7 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
           <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-1/3 h-0.5 bg-linear-to-r from-transparent via-[#E7121B] to-transparent blur-[2px] opacity-40" />
 
           <div className="flex items-center justify-between w-full relative z-0 px-1">
-            {navItems.map((item, index) => {
+            {navItems.slice(0, 4).map((item, index) => {
               const isActive = activeIndex === index;
               
               return (
@@ -132,6 +132,26 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
             })}
           </div>
         </nav>
+
+        {/* Profile Circle */}
+        {(() => {
+          const profileIndex = 4;
+          const profileItem = navItems[profileIndex];
+          const isActive = activeIndex === profileIndex;
+
+          return (
+            <button
+              onClick={() => handleItemClick(profileIndex, profileItem)}
+              className={`shrink-0 flex items-center justify-center rounded-full relative shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-[2px] transition-all duration-500 ease-out w-[60px] h-[60px] ${
+                isActive 
+                  ? 'border-white/90 bg-linear-to-br from-[#E7121B] to-[#C21011] text-white item-glow' 
+                  : 'border-white/60 backdrop-blur-md bg-white/30 text-gray-700 hover:text-black hover:bg-white/50'
+              } ${poppedIndex === profileIndex ? 'haptic-pop' : ''}`}
+            >
+              <profileItem.icon className={`text-[24px] transition-transform duration-300 ${isActive ? 'scale-110 drop-shadow-md' : 'scale-100'}`} />
+            </button>
+          );
+        })()}
       </div>
     </>
   );
