@@ -650,10 +650,86 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#EFEBF0' }}>
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-[#010102] text-lg">Loading game data...</p>
+      <div
+        className="min-h-screen relative overflow-hidden p-0 m-0"
+        style={{
+          backgroundColor: '#EFEBF0',
+          backgroundImage:
+            'radial-gradient(circle at 8% 10%, rgba(231, 18, 27, 0.10) 0, transparent 38%), radial-gradient(circle at 95% 12%, rgba(128, 117, 255, 0.08) 0, transparent 30%), linear-gradient(180deg, #F3EFF6 0%, #EFEBF0 45%, #ECE7EE 100%)'
+        }}
+      >
+        <div className="w-full">
+          <div
+            className="absolute top-0 left-0 right-0 h-40 z-0"
+            style={{
+              background: 'linear-gradient(180deg, rgba(176, 20, 40, 0.13) 0%, rgba(176, 20, 40, 0.03) 55%, transparent 100%)'
+            }}
+          />
+
+          {/* Top Section with Logo */}
+          <div className="relative z-10">
+            <TopSection showLogo={true} onNavigate={onNavigate} />
+          </div>
+
+          <div className="w-full relative z-10 animate-pulse mt-2">
+            {/* Top Wallet Banner Skeleton */}
+            <div className="px-4 md:px-6 lg:px-8 mb-4">
+              <div className="bg-gray-300/40 rounded-[16px] h-[52px] w-full"></div>
+            </div>
+
+            {/* Game Info Card Skeleton */}
+            <div className="px-4 md:px-6 lg:px-8 mb-4">
+              <div className="bg-white/60 rounded-[16px] p-3 flex items-center border border-gray-100/50">
+                <div className="w-[46px] h-[46px] rounded-xl bg-gray-200/80 mr-3.5"></div>
+                <div className="w-1/3 h-5 bg-gray-200/80 rounded-md"></div>
+              </div>
+            </div>
+
+            {/* Social Media Row Skeleton */}
+            <div className="px-4 md:px-6 lg:px-8 mb-5">
+              <div className="bg-[#F8F9FA]/60 rounded-[14px] py-2.5 px-6 flex justify-between items-center border border-gray-100/30 shadow-[inset_0_2px_8px_rgba(0,0,0,0.01)]">
+                <div className="w-[42px] h-[42px] bg-white/80 rounded-xl"></div>
+                <div className="w-[42px] h-[42px] bg-white/80 rounded-xl"></div>
+                <div className="w-[42px] h-[42px] bg-white/80 rounded-xl"></div>
+                <div className="w-[42px] h-[42px] bg-white/80 rounded-xl"></div>
+              </div>
+            </div>
+
+            {/* Validation Input Card Skeleton */}
+            <div className="px-4 md:px-6 lg:px-8 mb-6">
+              <div className="p-5 md:p-6 bg-white/60 rounded-[16px] border border-gray-100/50 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+                <div className="mb-4">
+                  <div className="w-32 h-5 bg-gray-200/80 rounded-md mb-2"></div>
+                  <div className="w-48 h-3 bg-gray-200/60 rounded-md"></div>
+                </div>
+                <div className="space-y-4 mt-6">
+                  <div>
+                    <div className="w-24 h-3 bg-gray-200/60 rounded mb-2"></div>
+                    <div className="w-full h-[46px] bg-[#F8F9FA]/80 rounded-xl border border-gray-100/50"></div>
+                  </div>
+                  <div>
+                    <div className="w-24 h-3 bg-gray-200/60 rounded mb-2"></div>
+                    <div className="w-full h-[46px] bg-[#F8F9FA]/80 rounded-xl border border-gray-100/50"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Category / Items Skeleton */}
+            <div className="px-4 md:px-6 lg:px-8 mt-6">
+               <div className="flex gap-3 mb-5 overflow-hidden">
+                 <div className="w-20 h-[38px] bg-gray-300/40 rounded-xl shrink-0"></div>
+                 <div className="w-24 h-[38px] bg-white/50 rounded-xl shrink-0 border border-gray-200/50"></div>
+                 <div className="w-24 h-[38px] bg-white/50 rounded-xl shrink-0 border border-gray-200/50"></div>
+               </div>
+               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+                 <div className="bg-white/60 h-[140px] rounded-[16px] border border-gray-100/50"></div>
+                 <div className="bg-white/60 h-[140px] rounded-[16px] border border-gray-100/50"></div>
+                 <div className="bg-white/60 h-[140px] rounded-[16px] border border-gray-100/50"></div>
+                 <div className="bg-white/60 h-[140px] rounded-[16px] border border-gray-100/50"></div>
+               </div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -724,97 +800,60 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
         </div>
 
         {/* Social Media Connections Row (Grey Section) */}
-        <div className="px-4 md:px-6 lg:px-8 mb-6 relative z-10">
-          <div className="bg-[#F8F9FA] rounded-[16px] py-4 px-6 flex justify-between items-center border border-gray-100/60 shadow-[inset_0_2px_8px_rgba(0,0,0,0.01)]">
-            <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <FaFacebook className="text-[#1877F2] text-[26px] drop-shadow-sm" />
+        <div className="px-4 md:px-6 lg:px-8 mb-5 relative z-10">
+          <div className="bg-[#F8F9FA] rounded-[14px] py-2.5 px-6 flex justify-between items-center border border-gray-100/60 shadow-[inset_0_2px_8px_rgba(0,0,0,0.01)]">
+            <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="w-[42px] h-[42px] bg-white rounded-xl flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaFacebook className="text-[#1877F2] text-[22px] drop-shadow-sm" />
             </a>
-            <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <FaInstagram className="text-[#E1306C] text-[26px] drop-shadow-sm" />
+            <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="w-[42px] h-[42px] bg-white rounded-xl flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaInstagram className="text-[#E1306C] text-[22px] drop-shadow-sm" />
             </a>
-            <a href="https://youtube.com/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <FaYoutube className="text-[#FF0000] text-[26px] drop-shadow-sm" />
+            <a href="https://youtube.com/" target="_blank" rel="noreferrer" className="w-[42px] h-[42px] bg-white rounded-xl flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaYoutube className="text-[#FF0000] text-[22px] drop-shadow-sm" />
             </a>
-            <a href="https://wa.me/" target="_blank" rel="noreferrer" className="w-[50px] h-[50px] bg-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
-              <FaWhatsapp className="text-[#25D366] text-[26px] drop-shadow-sm" />
+            <a href="https://wa.me/" target="_blank" rel="noreferrer" className="w-[42px] h-[42px] bg-white rounded-xl flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.03)] border border-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <FaWhatsapp className="text-[#25D366] text-[22px] drop-shadow-sm" />
             </a>
           </div>
         </div>
 
         {/* Validation Input Card */}
         <div className="px-4 md:px-6 lg:px-8 mb-6">
-          <div
-            className="p-6 relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(130deg, #B80D22 0%, #D80E21 48%, #EE3A45 100%)',
-              borderRadius: '22px',
-              boxShadow: '0px 14px 34px rgba(99, 24, 46, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.22)'
-            }}
-          >
-            <div
-              className="absolute -top-20 -right-14 w-52 h-52 rounded-full pointer-events-none"
-              style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.01) 68%)' }}
-            />
-            <div
-              className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full pointer-events-none"
-              style={{ background: 'radial-gradient(circle, rgba(73, 8, 31, 0.40) 0%, rgba(73, 8, 31, 0.02) 70%)' }}
-            />
-            <div
-              className="absolute top-12 -right-6 w-36 h-36 pointer-events-none"
-              style={{
-                clipPath: 'polygon(50% 0%, 96% 28%, 80% 100%, 12% 86%, 0% 34%)',
-                background: 'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.05) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.20)',
-                filter: 'blur(0.3px)'
-              }}
-            />
-            <div
-              className="absolute -bottom-8 right-16 w-28 h-28 pointer-events-none"
-              style={{
-                clipPath: 'polygon(52% 0%, 100% 50%, 52% 100%, 0% 56%)',
-                background: 'linear-gradient(160deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.03) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.16)'
-              }}
-            />
-            <div
-              className="absolute top-20 left-28 w-20 h-20 pointer-events-none"
-              style={{
-                clipPath: 'polygon(50% 0%, 100% 40%, 78% 100%, 20% 100%, 0% 40%)',
-                background: 'linear-gradient(145deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.02) 100%)'
-              }}
-            />
+          <div className="p-5 md:p-6 bg-white rounded-[16px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 relative overflow-hidden">
             <div className="relative z-10">
+              <div className="mb-4">
+                <h2 className="text-[#1A1A22] font-bold text-[15px] sm:text-base tracking-tight">Account Details</h2>
+                <p className="text-gray-400 text-[11px] sm:text-xs mt-0.5">Please enter your details to validate your account</p>
+              </div>
 
               {/* Input Fields - Dynamic based on validationFields */}
-              <div className="space-y-3" id="validation-section">
+              <div className="space-y-3.5" id="validation-section">
                 {gameData.validationFields && (() => {
-                  // Determine which field should get the inline history button
                   const fields = gameData.validationFields;
-                  const hasServerField = fields.some(f => f === 'server' || f === 'serverId');
-                  // History button goes on the last field (server if present, else playerId / last field)
-                  const historyTargetField = hasServerField
-                    ? fields.find(f => f === 'server' || f === 'serverId')
-                    : fields[fields.length - 1];
+                  // History button goes on playerId (or the first field if playerId is not found)
+                  const historyTargetField = fields.find(f => f === 'playerId' || f.toLowerCase().includes('id')) || fields[0];
+                  // Validate button goes on the last field (usually server)
+                  const validateTargetField = fields[fields.length - 1];
 
                   return fields.map((field) => {
                     const isServerField = (field === 'server' || field === 'serverId');
                     const shouldUseDropdown = isServerField && gameData.regionList && gameData.regionList.length > 0;
                     const isInvalid = invalidFields.includes(field);
                     const showHistoryHere = field === historyTargetField && validationHistory.length > 0;
-                    // Show status indicator (spinner / checkmark) on last field
+                    const showValidateHere = field === validateTargetField;
                     const isLastField = field === fields[fields.length - 1];
 
                     return (
                       <div key={field}>
                         <label
                           htmlFor={`topup-${field}`}
-                          className="text-[#FFF4F6] text-sm mb-1.5 block"
+                          className="text-gray-600 text-[12px] font-semibold mb-1.5 block ml-0.5"
                         >
                           Enter Your {getFieldLabel(field)}
                         </label>
 
-                        {/* Input row with optional history button */}
-                        <div className="flex items-center gap-2">
+                        {/* Input row with optional buttons */}
+                        <div className="flex items-center gap-2.5">
                           {/* Input / Select */}
                           <div className="flex-1 relative">
                             {shouldUseDropdown && gameData.regionList ? (
@@ -823,11 +862,10 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
                                 id={`topup-${field}`}
                                 value={formData[field] || ''}
                                 onChange={handleSelectChange}
-                                className="w-full px-4 py-2.5 rounded-xl text-black transition-all outline-none"
+                                className="w-full px-4 py-2.5 rounded-xl text-gray-800 transition-all outline-none text-sm appearance-none"
                                 style={{
-                                  backgroundColor: '#FFF9FA',
-                                  border: isInvalid ? '1.5px solid #FCA5A5' : '1px solid #F3CAD2',
-                                  color: '#201421'
+                                  backgroundColor: '#F8F9FA',
+                                  border: isInvalid ? '1.5px solid #EF4444' : '1px solid #E2E4E9',
                                 }}
                               >
                                 <option value="">Select {getFieldLabel(field)}</option>
@@ -845,37 +883,26 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
                                 value={formData[field] || ''}
                                 onChange={handleInputChange}
                                 placeholder={getFieldPlaceholder(field)}
-                                className="w-full px-4 py-2.5 rounded-xl text-black placeholder-gray-400 transition-all outline-none"
+                                className="w-full px-4 py-2.5 rounded-xl text-gray-800 placeholder-gray-400 transition-all outline-none text-sm"
                                 style={{
-                                  backgroundColor: '#FFF9FA',
-                                  border: isInvalid ? '1.5px solid #FCA5A5' : '1px solid #F3CAD2',
-                                  color: '#201421'
+                                  backgroundColor: '#F8F9FA',
+                                  border: isInvalid ? '1.5px solid #EF4444' : '1px solid #E2E4E9',
                                 }}
                               />
                             )}
 
-                            {/* Inline validation spinner / checkmark (on last field only) */}
-                            {isLastField && (isValidating || isValidated) && (
-                              <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                                {isValidating ? (
-                                  <div style={{
-                                    width: '16px', height: '16px',
-                                    border: '2px solid rgba(231,18,27,0.25)',
-                                    borderTopColor: '#E7121B',
-                                    borderRadius: '50%',
-                                    animation: 'spin 0.7s linear infinite'
-                                  }} />
-                                ) : (
-                                  <div style={{
-                                    width: '18px', height: '18px', borderRadius: '50%',
-                                    background: 'linear-gradient(135deg, #22C55E, #16A34A)',
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                  }}>
-                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                                      <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                  </div>
-                                )}
+                            {/* Inline validation checkmark (on last field only) */}
+                            {isLastField && isValidated && !isValidating && (
+                              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                                <div style={{
+                                  width: '18px', height: '18px', borderRadius: '50%',
+                                  background: 'linear-gradient(135deg, #22C55E, #16A34A)',
+                                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}>
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                                  </svg>
+                                </div>
                               </div>
                             )}
                           </div>
@@ -886,34 +913,41 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
                               type="button"
                               onClick={() => setShowHistoryListModal(true)}
                               title={`${validationHistory.length} previous validations`}
-                              style={{
-                                position: 'relative',
-                                flexShrink: 0,
-                                width: '42px',
-                                height: '42px',
-                                borderRadius: '12px',
-                                background: 'rgba(255,255,255,0.18)',
-                                border: '1px solid rgba(255,255,255,0.35)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer'
-                              }}
+                              className="relative flex-shrink-0 w-[42px] h-[42px] rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all shadow-sm"
                             >
-                              <svg width="18" height="18" fill="none" stroke="white" strokeWidth={2} viewBox="0 0 24 24">
+                              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
                               {/* Count badge */}
                               <span style={{
-                                position: 'absolute', top: '-4px', right: '-4px',
-                                minWidth: '16px', height: '16px', borderRadius: '99px',
-                                background: '#22C55E',
-                                color: 'white', fontSize: '9px', fontWeight: 700,
+                                position: 'absolute', top: '-5px', right: '-5px',
+                                minWidth: '18px', height: '18px', borderRadius: '99px',
+                                background: '#E7121B',
+                                color: 'white', fontSize: '10px', fontWeight: 700,
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                padding: '0 3px'
+                                padding: '0 4px',
+                                boxShadow: '0 2px 5px rgba(231,18,27,0.25)'
                               }}>
                                 {validationHistory.length}
                               </span>
+                            </button>
+                          )}
+
+                          {/* Validate button — inline on the target field */}
+                          {showValidateHere && (
+                            <button
+                              type="button"
+                              onClick={handleValidate}
+                              disabled={isValidating}
+                              className={`relative flex-shrink-0 h-[42px] px-4 rounded-xl text-white font-semibold text-sm transition-all flex items-center justify-center shadow-[0_2px_8px_rgba(231,18,27,0.15)] ${
+                                isValidating ? 'bg-[#E7121B]/60 cursor-not-allowed' : 'bg-gradient-to-r from-[#E7121B] to-[#C21011] hover:shadow-[0_4px_12px_rgba(231,18,27,0.25)] active:scale-95'
+                              }`}
+                            >
+                              {isValidating ? (
+                                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              ) : (
+                                'Validate'
+                              )}
                             </button>
                           )}
                         </div>
@@ -922,57 +956,27 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
                   });
                 })()}
 
-                {/* Manual Validate Button */}
-                <button
-                  type="button"
-                  onClick={handleValidate}
-                  disabled={isValidating}
-                  className={`w-full py-2.5 mt-2 rounded-xl text-white font-semibold transition-all ${
-                    isValidating ? 'bg-white/30 cursor-not-allowed' : 'bg-white/20 hover:bg-white/30 active:scale-95'
-                  } border border-white/30`}
-                >
-                  {isValidating ? 'Validating...' : 'Validate Account'}
-                </button>
-
                 {/* Validated player name card */}
                 {validatedInfo && (
-                  <div
-                    style={{
-                      marginTop: '8px',
-                      padding: '10px 14px',
-                      borderRadius: '12px',
-                      background: 'rgba(255,255,255,0.15)',
-                      border: '1px solid rgba(255,255,255,0.30)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px'
-                    }}
-                  >
-                    <div style={{
-                      width: '28px', height: '28px', borderRadius: '50%', flexShrink: 0,
-                      background: 'linear-gradient(135deg, #22C55E, #16A34A)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                  <div className="mt-2 p-3 px-4 rounded-xl bg-green-50/60 border border-green-100 flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-full flex-shrink-0 bg-gradient-to-br from-[#22C55E] to-[#16A34A] flex items-center justify-center shadow-sm">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <div>
-                      <p style={{ color: '#FFFFFF', fontFamily: 'Poppins', fontWeight: 700, fontSize: '13px', lineHeight: 1.2 }}>
+                      <p className="text-gray-900 font-bold text-[13px] leading-snug">
                         {validatedInfo.nickname}
                       </p>
                       {validatedInfo.server && (
-                        <p style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'Poppins', fontWeight: 400, fontSize: '11px', marginTop: '1px' }}>
+                        <p className="text-gray-500 font-medium text-[11px] mt-0.5">
                           {validatedInfo.server}
                         </p>
                       )}
                     </div>
-                    <span style={{
-                      marginLeft: 'auto', background: 'rgba(34,197,94,0.2)',
-                      border: '1px solid rgba(34,197,94,0.4)',
-                      borderRadius: '6px', padding: '2px 8px',
-                      color: '#4ADE80', fontSize: '10px', fontWeight: 700, letterSpacing: '0.04em'
-                    }}>VERIFIED</span>
+                    <span className="ml-auto bg-green-100/80 text-green-700 border border-green-200/80 rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wide">
+                      VERIFIED
+                    </span>
                   </div>
                 )}
               </div>
@@ -982,129 +986,33 @@ export default function TopUpPage({ onNavigate }: TopUpPageProps = {}) {
 
         {/* Select Diamond Pack Section */}
         <div className="px-4 md:px-6 lg:px-8 mb-6">
-          <h2 className="text-[#1A1A22] font-semibold text-base sm:text-lg mb-4 tracking-tight">Select Diamond Pack</h2>
-
-          {/* Category Cards - Square Design - Scrollable */}
-          {allCategories.length > 0 && (() => {
-            // We need a ref for the scroll container — declared inline via a callback ref pattern
-            // using a stable module-level ref (catScrollRef is declared alongside other state).
-            return (
-              <div className="mb-6 relative" id="category-scroll-wrapper">
-                {/* Scroll strip */}
-                <div
-                  id="category-scroll-inner"
-                  className="overflow-x-auto scrollbar-hide"
-                  style={{ WebkitOverflowScrolling: 'touch' }}
-                  onScroll={(e) => {
-                    const el = e.currentTarget;
-                    const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
-                    const hint = document.getElementById('cat-scroll-hint');
-                    if (hint) hint.style.opacity = atEnd ? '0' : '1';
-                  }}
-                >
-                  <div className="flex gap-2.5 md:gap-3 pb-2" style={{ minWidth: 'max-content' }}>
-                    {allCategories.map((category) => {
-                      const isSelected = selectedCategory === category;
-                      const categoryImage = categoryImages[category];
-
-                      return (
-                        <button
-                          key={category}
-                          type="button"
-                          onClick={() => setSelectedCategory(category)}
-                          className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:scale-105 flex flex-col items-center justify-start p-2 shrink-0"
-                          style={{
-                            width: '192px',
-                            minWidth: '92px',
-                            minHeight: '102px',
-                            background: isSelected
-                              ? 'linear-gradient(145deg, #E0202D 0%, #B30B19 100%)'
-                              : 'linear-gradient(150deg, #FFFFFF 0%, #F2F5FC 65%, #EBEEF7 100%)',
-                            border: isSelected ? '1px solid rgba(176, 16, 33, 0.85)' : '1px solid #D9DEE8',
-                            boxShadow: isSelected ? '0 10px 18px rgba(190, 22, 38, 0.22)' : '0 8px 16px rgba(34, 42, 66, 0.12)'
-                          }}
-                        >
-                          {/* Category Image as Element */}
-                          {categoryImage ? (
-                            <div className="w-10 h-10 sm:w-11 sm:h-11 mb-1 relative shrink-0">
-                              <Image
-                                src={categoryImage}
-                                alt={category}
-                                fill
-                                className="object-contain"
-                                style={{ filter: isSelected ? 'none' : 'grayscale(30%)' }}
-                              />
-                            </div>
-                          ) : (
-                            <div className="w-10 h-10 sm:w-11 sm:h-11 mb-1 flex items-center justify-center bg-gray-200 rounded-lg">
-                              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M4 3a2 2 0 100 4 2 2 0 000-4zM5.5 1a2.5 2.5 0 00-2.5 2.5v.5h5v-.5A2.5 2.5 0 005.5 1zM9 3a2 2 0 100 4 2 2 0 000-4zM10.5 1a2.5 2.5 0 00-2.5 2.5v.5h5v-.5A2.5 2.5 0 0010.5 1zM15 3a2 2 0 100 4 2 2 0 000-4zM16.5 1a2.5 2.5 0 00-2.5 2.5v.5h5v-.5A2.5 2.5 0 0016.5 1zM3 8a2 2 0 012-2h10a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-                              </svg>
-                            </div>
-                          )}
-
-                          {/* Category Name */}
-                          <div className="text-center mt-0.5 px-0.5">
-                            <span
-                              className={`${isSelected ? "text-white" : "text-[#1E2738]"} font-semibold leading-tight wrap-break-word`}
-                              style={{
-                                textShadow: isSelected ? '0 1px 3px rgba(0, 0, 0, 0.28)' : 'none',
-                                lineHeight: '1.15',
-                                fontSize: '11px',
-                                wordBreak: 'break-word',
-                                overflowWrap: 'break-word'
-                              }}
-                            >
-                              {category}
-                            </span>
-                          </div>
-
-                          {/* Selected Indicator */}
-                          {isSelected && (
-                            <div className="absolute top-2 right-2 z-10">
-                              <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white"></div>
-                            </div>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Right-edge scroll hint — fades when user reaches the end */}
-                <div
-                  id="cat-scroll-hint"
-                  className="pointer-events-none absolute top-0 right-0 bottom-2 flex items-center justify-end"
-                  style={{
-                    width: '64px',
-                    background: 'linear-gradient(to right, transparent 0%, rgba(248,249,251,0.85) 55%, rgba(248,249,251,0.98) 100%)',
-                    transition: 'opacity 0.3s ease',
-                    opacity: allCategories.length > 3 ? 1 : 0,
-                    borderRadius: '0 12px 12px 0'
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '26px',
-                      height: '26px',
-                      borderRadius: '50%',
-                      background: 'linear-gradient(135deg, #E7121B 0%, #BF0E16 100%)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '6px',
-                      boxShadow: '0 2px 8px rgba(231,18,27,0.35)',
-                      animation: 'catHintBounce 1.2s ease-in-out infinite'
-                    }}
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 18l6-6-6-6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
+          {/* Category Filter - Pill Design */}
+          {allCategories.length > 0 && (
+            <div className="bg-white rounded-[16px] p-4 md:p-5 mb-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-50">
+              <h2 className="text-[#1A1A22] font-semibold text-[15px] sm:text-base mb-4 tracking-tight">Filter by Category</h2>
+              <div className="flex flex-wrap gap-2.5">
+                {allCategories.map((category) => {
+                  const isSelected = selectedCategory === category;
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-3.5 py-1.5 rounded-lg text-[13px] sm:text-sm font-medium transition-all duration-200 ${
+                        isSelected
+                          ? 'bg-[#00DF68] text-[#010102] shadow-[0_4px_10px_rgba(0,223,104,0.25)] border border-[#00DF68]'
+                          : 'bg-[#F8F9FA] text-[#4B5563] hover:bg-[#F3F4F6] border border-[#E5E7EB]'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  );
+                })}
               </div>
-            );
-          })()}
+            </div>
+          )}
+
+          <h2 className="text-[#1A1A22] font-semibold text-base sm:text-lg mb-4 tracking-tight">Select Diamond Pack</h2>
 
           {/* Diamond Pack Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">

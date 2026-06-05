@@ -3,10 +3,10 @@
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { IoMdHome } from 'react-icons/io';
-import { LuGrid2X2 } from 'react-icons/lu';
+import { LuGrid2X2, LuUser } from 'react-icons/lu';
 import { GiShoppingBag } from 'react-icons/gi';
 import { MdNewspaper, MdBarChart } from 'react-icons/md';
-import { FaUserCircle, FaHeadset, FaGift } from 'react-icons/fa';
+import { FaHeadset, FaGift } from 'react-icons/fa';
 import { useEffect, useState, useCallback } from 'react';
 import { useAppSelector } from '@/lib/hooks/redux';
 
@@ -90,6 +90,14 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
         .item-glow {
           box-shadow: 0 0 16px rgba(231, 18, 27, 0.4), inset 0 0 8px rgba(255, 255, 255, 0.4);
         }
+        .water-drop {
+          background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7) 0%, #e7121b 40%, #c21011 100%);
+          box-shadow: 0 8px 20px rgba(231, 18, 27, 0.3);
+        }
+        .water-drop-overlay {
+          background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
+          pointer-events: none;
+        }
       `}</style>
       
       <div className="fixed bottom-0 left-0 w-full z-50 bg-white/60 backdrop-blur-xl border-t border-white/60 shadow-[0_-8px_32px_rgba(0,0,0,0.12)] rounded-t-[32px] pt-2 pb-5 px-3">
@@ -127,12 +135,10 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
                   </div>
                   
                   {/* Label on the right for active item */}
-                  <div className={`grid transition-all duration-500 ease-out ${isActive ? 'grid-cols-[1fr] ml-2 opacity-100' : 'grid-cols-[0fr] ml-0 opacity-0'}`}>
-                    <div className="overflow-hidden flex items-center">
-                      <span className="text-[12px] font-bold tracking-wide text-[#E7121B] whitespace-nowrap block">
-                        {item.label}
-                      </span>
-                    </div>
+                  <div className={`overflow-hidden transition-all duration-500 ease-out flex items-center ${isActive ? 'max-w-[100px] ml-2 opacity-100' : 'max-w-0 ml-0 opacity-0'}`}>
+                    <span className="text-[12px] font-bold tracking-wide text-[#E7121B] whitespace-nowrap block">
+                      {item.label}
+                    </span>
                   </div>
                 </button>
               );
@@ -145,19 +151,20 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
           const profileIndex = 4;
           const profileItem = navItems[profileIndex];
           const isActive = activeIndex === profileIndex;
+          const hasProfilePic = isAuthenticated && user?.profilePicture && !imgError;
 
           return (
             <button
               onClick={() => handleItemClick(profileIndex, profileItem)}
-              className={`shrink-0 flex items-center justify-center rounded-full relative shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-[2px] transition-all duration-500 ease-out overflow-hidden w-[46px] h-[46px] ${
-                isActive 
-                  ? 'border-white/90 bg-linear-to-br from-[#E7121B] to-[#C21011] text-white item-glow' 
-                  : 'border-white/60 backdrop-blur-md bg-white/30 text-gray-700 hover:text-black hover:bg-white/50'
+              className={`shrink-0 flex items-center justify-center rounded-full relative border-[1.5px] transition-all duration-500 ease-out overflow-hidden w-[46px] h-[46px] border-white ${
+                hasProfilePic
+                  ? (isActive ? 'scale-105 shadow-md' : 'opacity-90 hover:opacity-100 hover:scale-105 shadow-sm')
+                  : (isActive ? 'water-drop scale-105' : 'water-drop opacity-90 hover:opacity-100 hover:scale-105')
               } ${poppedIndex === profileIndex ? 'haptic-pop' : ''}`}
             >
-              {isAuthenticated && user?.profilePicture && !imgError ? (
+              {hasProfilePic ? (
                 <Image
-                  src={user.profilePicture}
+                  src={user.profilePicture!}
                   alt="Profile"
                   width={46}
                   height={46}
@@ -165,8 +172,8 @@ export default function BottomNavigation({ onNavigate }: BottomNavigationProps =
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-[#E7121B] to-[#C21011] text-white">
-                  <FaUserCircle className={`text-[22px] transition-transform duration-300 ${isActive ? 'scale-110 drop-shadow-md' : 'scale-100'}`} />
+                <div className="w-full h-full flex items-center justify-center text-white">
+                  <LuUser className={`text-[22px] stroke-[2px] transition-transform duration-300 ${isActive ? 'scale-110 drop-shadow-md' : 'scale-100'}`} />
                 </div>
               )}
             </button>
