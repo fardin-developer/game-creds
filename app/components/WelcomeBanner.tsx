@@ -97,9 +97,9 @@ export default function WelcomeBanner() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4 relative mt-2">
                 <div className="flex flex-col p-1">
                     <h1 className="text-gray-900 font-bold text-xl md:text-2xl tracking-tight">
-                        Welcome, <span className="text-[var(--color-primary)] font-semibold">{user?.name || 'Guest'}</span>
+                        GG, <span className="text-[var(--color-primary)] font-semibold">{user?.name || 'Guest'}</span>! ⚡
                     </h1>
-                    <p className="text-gray-500 text-xs md:text-sm mt-0.5">Discover the best deals for your games.</p>
+                    <p className="text-gray-500 text-xs md:text-sm mt-0.5">Let&apos;s get you topped up and ready to dominate.</p>
                 </div>
             </div>
 

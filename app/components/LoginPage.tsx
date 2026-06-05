@@ -181,11 +181,11 @@ export default function LoginPage({ onNavigate }: LoginPageProps) {
                 priority
               />
             </div>
-            <h1 className="text-3xl font-semibold text-gray-800 mb-2 tracking-tight">
-              Welcome Back
+            <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
+              Get Started <span className="text-[#E7121B]">!!</span>
             </h1>
-            <p className="text-gray-500 text-sm font-medium">
-              Sign in to continue to <span className="text-gray-800">Game Creds</span>
+            <p className="text-gray-500 text-sm font-medium mt-1">
+              Ready to <span className="text-[#E7121B] font-semibold">TOP-UP</span>? Login now!
             </p>
           </div>
 
